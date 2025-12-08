@@ -67,6 +67,15 @@ header section.bpa-b img:nth-child(3) { width: 225.5px; height: 55px; margin: 0 
 
 header hr, footer hr { border-bottom: 4px solid #acabaa; border-radius: 0 0 5px 5px; border-radius: }
 
+.bpa-autoria {
+  color: var(--color-txt-dimmed);
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin-bottom: 4rem;
+}
+
 main { margin: 5rem auto 2rem; }
 
 .upper { text-transform: uppercase; }
@@ -236,8 +245,8 @@ article span {
 article span:before {
   position: absolute;
   content: '●';
-  font-size: 3rem;
-  top: -10px;
+  font-size: 2.5rem;
+  top: -5px;
   left: -25px;
   color: var(--celeste-bpms);
 }
