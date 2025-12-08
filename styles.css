@@ -1,0 +1,327 @@
+:root {
+        --color-bg : #222;
+       --color-txt : #f7f3ea;
+--color-txt-dimmed : #a6a39e;
+    --celeste-bpms : #2ebcd1;
+       --rojo-bpms : #e3051b;
+}
+
+
+* { box-sizing: border-box; margin: 0 auto; padding: 0; }
+
+html { scrollbar-width: thin; scroll-behavior: smooth; font-size: 10px; }
+
+/*::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-thumb { background: #111; }
+::-webkit-scrollbar-track { background: #fff; }*/
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-txt);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.85rem;
+  padding: 2rem;
+  text-rendering: geometricPrecision;
+}
+
+img { border: none; display: block; width: 100%; height: auto; }
+
+a { color: var(--celeste-bpms); text-decoration: none; }
+a:focus { outline: 0; }
+
+p { 
+  font-size: 2.2rem;
+  line-height: 1.25;
+  max-width: 750px;
+  margin: 0 auto 2.5rem;
+}
+
+abbr { text-transform:uppercase; text-decoration: none; font-weight: bold; font-size: 1.6rem; }
+
+hr { max-width: 900px; border: none; border-bottom: 1px solid #52514f; }
+
+h1 { text-indent: -9999px; height: 0; }
+h2 {
+  font-family: 'Francois One', sans-serif;
+  font-size: 4rem;
+  line-height: 1.2;
+  max-width: 800px; 
+  margin: 5rem auto;
+}
+
+h3 {
+  text-align: center;
+  font-style: italic;
+  font-size: 3.75rem;
+  font-weight: lighter;
+  margin: 5rem auto;
+}
+
+.only-desktop { display: none; }
+.rojo { color: var(--rojo-bpms); }
+.celeste { color: var(--celeste-bpms); }
+
+header section.bpa-a { margin: 2.5rem auto 1.5rem; }
+header section.bpa-a img { height: 45px; width: 253px; }
+header section.bpa-a img:nth-child(2) { width: 175px; }
+
+header section.bpa-b { margin: 3rem auto 4rem; }
+header section.bpa-b img:nth-child(1) { width: 330px; height: 55px; margin: 0 auto; }
+header section.bpa-b img:nth-child(2) { width: 34px; height: 45px; }
+header section.bpa-b img:nth-child(3) { width: 225.5px; height: 55px; margin: 0 auto; }
+
+header hr, footer hr { border-bottom: 4px solid #acabaa; border-radius: 0 0 5px 5px; border-radius: }
+
+main { margin: 5rem auto 2rem; }
+
+.upper { text-transform: uppercase; }
+.hide { display: none; }
+
+.bpa-epigraph {
+  text-transform: uppercase;
+  color: var(--color-txt-dimmed);
+  font-size: 1.4rem;
+  text-align: center;
+  letter-spacing: 1.25px;
+  /*font-weight: bold;*/
+  line-height: 1.8;
+  max-width: 960px;
+  margin-bottom: 5rem;
+}
+
+/*////// Bibliotecas por provincia ///////////////////////////////////////////*/
+
+#bpa-bibliotecas-por-provincia {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 210px);
+  justify-content: center;
+  align-items: end;
+  grid-column-gap: 20px;
+  max-width: 1024px;
+  margin: 3rem auto 5rem;
+  grid-row-gap: 15px;
+}
+
+#bpa-bibliotecas-por-provincia div { height: 53px; }
+
+#bpa-bibliotecas-por-provincia p {
+  text-transform: uppercase;
+  color: var(--color-txt-dimmed);
+  text-align: center;
+  letter-spacing: 1.25px;
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  padding-top: 10px;
+}
+
+/*////// Bibliotecas vs. cementerios ////////////////////////////////////////*/
+
+article {
+  border: 1.5px solid aliceblue;
+  max-width: 960px;
+  border-image: linear-gradient(var(--rojo-bpms) 0 50%, var(--celeste-bpms) 0 100%);
+  border-image-slice: 100%;
+  border-image-slice: 1;
+  margin: 7rem auto;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------------
+/////////////////////// d3.js render maps ////////////////////////////////////////
+------------------------------------------------------------------------------- */
+.bpa-geographic-distribution {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 375px));
+  align-items: center;
+  justify-content: center;
+  max-width: 2560px;
+  margin: 0 auto;
+}
+
+
+.bpa-geographic-distribution svg, 
+.bpa-geographic-distribution canvas {
+  width: 100%;
+  max-width: var(--w);
+  display: block;
+  grid-area: main;
+}
+
+.bpa-geographic-distribution div {
+  width: 100%;
+  max-width: 450px;
+  min-height: 50px;
+}
+
+#bpa-heatmap { display: inline-grid; grid-template-columns: 1fr; grid-template-areas: 'main'; }
+
+@keyframes drawing { 
+    95% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.15; }
+}
+
+/*#bpa-path #one.curveMonotoneX { stroke-dasharray: 18306 18306;  stroke-dashoffset: -18306; animation: drawing 10s linear .5s forwards; }
+#bpa-path #two.curveMonotoneX { stroke-dasharray: 32426 32426;  stroke-dashoffset: -32426; animation: drawing 17s linear 10.5s forwards; }
+#bpa-path #three.curveMonotoneX { stroke-dasharray: 45951 45951;  stroke-dashoffset: -45951; animation: drawing 25s linear 27.5s forwards; }
+#bpa-path #four.curveMonotoneX { stroke-dasharray: 41514 41514;  stroke-dashoffset: -41514; animation: drawing 22s linear 52.5s forwards; }
+#bpa-path #five.curveMonotoneX { stroke-dasharray: 36482 36482;  stroke-dashoffset: -36482; animation: drawing 20s linear 74.5s forwards; }
+*/
+
+#bpa-path { position: relative; cursor: pointer; }
+#bpa-path:before { 
+position: absolute;
+  content: '';
+  bottom: 8%;
+  right: 65px;
+  width: 32px;
+  height: 32px;
+  background-image: url(img/play.svg);
+  background-color: #bbb;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+#bpa-path.play-animation:before { 
+  background-image: url(img/repeat.svg);
+}
+
+/*#bpa-path:hover:before { filter: invert(1); }*/
+
+#bpa-path #one.curveMonotoneX { stroke-dasharray: 18306 18306;  stroke-dashoffset: -18306; }
+#bpa-path #two.curveMonotoneX { stroke-dasharray: 32426 32426;  stroke-dashoffset: -32426; }
+#bpa-path #three.curveMonotoneX { stroke-dasharray: 45951 45951;  stroke-dashoffset: -45951; }
+#bpa-path #four.curveMonotoneX { stroke-dasharray: 41514 41514;  stroke-dashoffset: -41514; }
+#bpa-path #five.curveMonotoneX { stroke-dasharray: 36482 36482;  stroke-dashoffset: -36482; }
+
+#bpa-path.play-animation #one.curveMonotoneX { animation: drawing 10s linear .5s forwards; }
+#bpa-path.play-animation #two.curveMonotoneX { animation: drawing 17s linear 10.5s forwards; }
+#bpa-path.play-animation #three.curveMonotoneX { animation: drawing 25s linear 27.5s forwards; }
+#bpa-path.play-animation #four.curveMonotoneX { animation: drawing 22s linear 52.5s forwards; }
+#bpa-path.play-animation #five.curveMonotoneX { animation: drawing 20s linear 74.5s forwards; }
+
+/* -------------------------------------------------------------------------------
+/////////////////////// Leer como estrategia de supervivencia ////////////////////
+------------------------------------------------------------------------------- */
+
+
+#bpa-habitantes-por-biblioteca { width: min(100%, 720px); }
+#bp-hpbp-amba-detail { width: 100%; max-width: 500px; }
+
+#bpa-habitantes-por-biblioteca svg text,
+#bp-hpbp-amba-detail svg text {
+  font-family:'Francois One', sans-serif;
+  fill: var(--color-txt);
+  font-size: 26px;
+}
+
+#bp-hpbp-amba-detail svg text.bpa-dataviz-title { font-size: 34px; }
+#bp-hpbp-amba-detail svg g.bpa-dataviz-numbers text { font-size: 22px; }
+
+
+/* -------------------------------------------------------------------------------
+/////////////////////// Leer como estrategia de supervivencia ////////////////////
+------------------------------------------------------------------------------- */
+
+article section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 400px));
+  justify-content: center;
+  padding-bottom: 3.5rem;
+}
+
+article section > div { width: 100%; max-width: 400px; }
+
+
+article span {
+  display: block;
+  width: fit-content;
+  position: relative;
+  font-family: 'Francois One', sans-serif;
+  position: relative;
+  top: -30px;
+}
+
+article span:before {
+  position: absolute;
+  content: '●';
+  font-size: 3rem;
+  top: -10px;
+  left: -25px;
+  color: var(--celeste-bpms);
+}
+
+article #bpa-cementerios-arg span:before { color: var(--rojo-bpms); }
+
+/* -------------------------------------------------------------------------------
+/////////////////////// Datos sobre las bibliotecas populares ////////////////////
+------------------------------------------------------------------------------- */
+
+ul {
+  list-style: none;
+  text-align: center;
+  max-width: 700px; 
+  font-size: 2.2rem;
+  margin-bottom: 5rem;
+}
+
+ul:nth-of-type(2) {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-txt-dimmed);
+  letter-spacing: 1.25px;
+  max-width: 960px;
+  margin-bottom: 5rem;
+}
+
+ul:nth-of-type(2) li {
+  padding: 7px 0;
+}
+
+
+/* -------------------------------------------------------------------------------
+/////////////////////// Footer ///////////////////////////////////////////////////
+------------------------------------------------------------------------------- */
+
+footer {}
+footer div:nth-of-type(1) img { display: block; max-width: 35px; margin-top: 5rem; }
+footer div:nth-of-type(2) img { display: block; max-width: 250px; margin-top: 2rem; }
+
+/* -------------------------------------------------------------------------------
+/////////////////////// media queries ////////////////////////////////////////////
+------------------------------------------------------------------------------- */
+
+@media (min-width:500px) {
+  header section.bpa-a { display: flex; max-width: 430px; }  
+}
+
+@media (min-width:660px) {
+  header section.bpa-b { display: flex; align-items: center; max-width: 620px; }  
+}
+
+@media (min-width:960px) {
+  header section.bpa-b { display: flex; align-items: center; max-width: 795px; }
+  header section.bpa-b img { margin: 0 }
+  header section.bpa-b img:nth-child(1) { width: 453px; height: 85px; }
+  header section.bpa-b img:nth-child(2) { width: 34px; height: 45px; margin: 0 5px; }
+  header section.bpa-b img:nth-child(3) { width: 307px; height: 75px; }
+}
+
+@media (min-width:1024px) {
+  .only-desktop { display: block; }
+    #bpa-habitantes-por-biblioteca {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 1200px;
+      width: 100%;
+    }
+    #bp-hpbp-pais-detail { width: 100%; height: auto; }
+}
+
+@media (min-width:1200px) {
+  #bpa-habitantes-por-biblioteca { grid-template-columns: 700px 450px; }
+  #bp-hpbp-amba-detail { position: relative; left: -80px; top: 50px; }
+}

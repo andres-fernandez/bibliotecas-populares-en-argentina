@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	 <meta name="description" content="Bibliotecas populares en Argentina">
+	 <meta name="keywords" content="bibliotecas, popular, argentina, lectura, mapas, territorio, visualización, dataviz">
+
+	 <title>Bibliotecas populares en Argentina</title>
+
+	 <link rel="stylesheet" href="styles.css">
+	 <link rel="preconnect" href="https://fonts.googleapis.com">
+	 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Francois+One&display=swap" rel="stylesheet">
+
+	 <link rel="canonical" href="https://andres-fernandez.github.io/bibliotecas-populares-en-argentina">
+
+	 <meta property="og:title" content="Bibliotecas populares en Argentina">
+	 <meta property="og:site_name" content="Bibliotecas populares en Argentina">
+	 <meta property="og:url" content="https://andres-fernandez.github.io/bibliotecas-populares-en-argentina">
+	 <meta property="og:description" content="Dataviz sobre las bibliotecas populares en Argentina">
+	 <meta property="og:type" content="website">
+	 <meta property="og:locale" content="es_AR">
+	 <meta property="og:image" content="img/webpage_300x200.png">
+	 <meta property="og:image:type" content="image/png">
+	 <meta property="og:image:width" content="300">
+	 <meta property="og:image:height" content="200">
+	 <meta property="og:image:alt" content="Bibliotecas populares en Argentina">
+
+	 <meta name="twitter:card" content="summary">
+	 <meta name="twitter:title" content="Bibliotecas populares en Argentina">
+	 <meta name="twitter:site" content="@AndresE00409994">
+	 <meta name="twitter:description" content="Dataviz sobre las bibliotecas populares en Argentina">
+	 <meta name="theme-color" content="#222222">
+
+	 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+	 <script src="https://d3js.org/d3.v7.min.js"></script>
+   <script src="simpleheat.js"></script>
+   <script type="module" src="main.js" defer></script>
+	</head>
+<body>
+	<header>
+	<h1>Bibliotecas populares en Argentina - Territorios de lectura</h1>
+	<section class="bpa-a">
+		<img src="img/bibliotecas-populares-OPT.svg" alt="">
+		<img src="img/en-argentina-OPT.svg" alt="">
+	</section>
+	<section class="bpa-b">
+		<img src="img/territorios.svg" alt="">
+		<img src="img/de.svg" alt="">
+		<img src="img/lectura.svg" alt="">
+	</section>
+	<hr>
+	</header>
+	<main>
+	<p>Al reparo de la vorágine diaria, en las entrañas de las urbes y los pueblos que se desperdigan por la geografía nacional, las bibliotecas populares se erigen como oasis culturales. Son los reservorios donde las personas adictas a mundos modelados en el papel pueden saciar su pulsión por sucesiones interminables de caracteres engarzados entre sí.</p>
+
+	<p>Las bibliotecas populares representan, en cada caso, un refugio para las palabras a la espera de ser devueltas a la vida durante su lectura. Su creación rehuye de la lógica que impone la ajetreada dinámica consumista. Son proyectos comunitarios, despojados de todo ánimo de lucro, que emergen de la voluntad de un puñado de personas, aunadas por su devoción a la palabra escrita y su anhelo por democratizar el acceso a un universo infinito de ideas.</p> 
+
+	<p>En Argentina existen 1.475 bibliotecas populares, según datos de la <abbr title="Comisión Nacional de Bibliotecas Populares"><a href="https://www.conabip.gob.ar/" target="_blank">Conabip</a></abbr>, la comisión nacional que las nuclea. Sus catálogos listan más de 20 millones de libros y su labor cotidiana se sostiene gracias al trabajo comprometido de más de 30 mil voluntarios.</p>
+
+	<p>La primera biblioteca popular del país fue creada por Domingo Faustino Sarmiento, en San Juan, el 17 de junio de 1866. Desde entonces, el despliegue de estos espacios por el territorio nacional ha replicado la huella del desarrollo poblacional, por lo que resulta lógico hallarlas aglutinadas en torno a los asentamientos con mayor densidad de habitantes.</p>
+
+	<p>Eso explica que la provincia de Buenos Aires sea uno de los distritos con mayor número de bibliotecas populares, seguida a la distancia por Santa Fe.</p>
+
+	<section class="bpa-geographic-distribution">
+		<div id="bpa-dots"></div>
+		<div id="bpa-heatmap"></div>
+		<div id="bpa-density"></div>
+		<div id="bpa-voronoi"></div>
+		<div id="bpa-path"></div>
+	</section>
+
+	<p class="bpa-epigraph">1. Cada punto, en el primer mapa, representa una biblioteca popular.<br>2. El segundo refleja el patrón que sigue su distribución en el territorio nacional.<br>3. El tercero grafica las zonas en Argentina donde su concentración es superior.<br>4. El cuarto expone el área de injerencia de cada biblioteca.<br>5. La animación de los trazos, en el último, sigue el orden en que las bibliotecas populares fueron fundadas. Cada uno conecta 300 bibliotecas aproximadamente.</p>
+
+	<hr>
+	<h2>Bibliotecas populares<br>por provincia</h2>
+
+	<section id="bpa-bibliotecas-por-provincia"></section>
+
+	<p>La asepsia de los números por distrito, sin embargo, resulta insuficiente para mesurar el impacto cultural que estos refugios de la palabra tienen en el territorio. Para eso resulta ineludible contemplar la cantidad de habitantes como una variable dentro de la ecuación. </p>
+
+	<p>¿Qué lugar de Argentina ostenta, entonces,  la mejor relación habitantes por biblioteca popular (hab/bp)? La respuesta está en La Pampa, más precisamente en  el departamento Lihuel Calel, donde la única biblioteca popular está disponible para las 437 personas que discurren su cotidianidad en ese enclave del interior pampeano.</p>
+
+	<p>En las antípodas se encuentra el Partido de Merlo, en la provincia de Buenos Aires, donde la única biblioteca popular debería atender una demanda que supera las 580 mil personas, si toda la comunidad decidiera concurrir a ellas. </p>
+
+	<h2>Los departamentos con <span class="celeste">mejor</span> y <span class="rojo">peor</span> relación habitantes/biblioteca popular</h2>
+
+	<section id="bpa-habitantes-por-biblioteca">
+		<div id="bp-hpbp-pais-detail">
+			<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1237 1380"><g id="bap-habitantes-por-biblioteca" transform="translate(-65,-36) scale(1.076)"></g><g fill="#f7f3ea" font-size="26" text-anchor="end"><text x="190" y="734">Lihuel Calel</text><text x="190" y="765">La Pampa</text><text x="190" y="796">437 hab/bp</text></g><g fill="#f7f3ea" font-size="26" text-anchor="end"><text x="190" y="886">Ñorquinco</text><text x="190" y="917">Río Negro</text><text x="190" y="948">.1480 hab/bp</text></g><g fill="#f7f3ea" font-size="26" text-anchor="end"><text x="190" y="434">Guatraché</text><text x="190" y="465">La Pampa</text><text x="190" y="496">1.967 hab/bp</text></g><g fill="#f7f3ea" font-size="26" text-anchor="end"><text x="190" y="584">Hucal</text><text x="190" y="615">La Pampa</text><text x="190" y="646">1.979 hab/bp</text></g><g fill="#f7f3ea" font-size="26" text-anchor="end"><text x="190" y="1038">Telsen</text><text x="190" y="1069">Chubut</text><text x="190" y="1100">1.681 hab/bp</text></g><g fill="none" stroke="#000" stroke-linejoin="round"><path d="M545.3 701.5 485 761.8H214.1"/><circle cx="545" cy="701.5" r="4" fill="#000"/><path d="m377.1 837.6-74 74h-89.3"/><circle cx="376.7" cy="838" r="4" fill="#000"/><path d="m479.3 865-178.1 194h-86.7"/><circle cx="479.2" cy="865" r="4" fill="#000"/><path d="m585 689.6-84.8-84.7H353.3"/><circle cx="585" cy="689.5" r="4" fill="#000"/><path d="M591 670.1V563.7L487.7 460.4H347"/><circle cx="591" cy="670" r="4" fill="#000"/></g><g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="2.2"><path d="M214 711.8V804M319.6 761.8H214.1M214 865v92M321.7 893 303 911.6h-89.2M214 412.5l.5 87.5M339.9 1017l-38.7 42H214M214 561.7v92.1M355.2 604.9H214M214 1017.3v92.1M348.8 460.4H214"/></g><g class="only-desktop" fill="none" stroke="#fff" stroke-width="2"><circle cx="776.4" cy="560.5" r="20" stroke="#000" stroke-width="7.5"/><path stroke-width="8" d="M787.1 543.8c5.5 3.1 9.3 9.1 9.3 16 0 .7 0 1.5-.1 2.2"/><path d="m796.4 549.1 181.5-181.5h910.9"/></g></svg>
+		</div>
+		<div id="bp-hpbp-amba-detail">
+			<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5" viewBox="0 0 900 1400"><style>text{font-family:&quot;Francois One&quot;,sans-serif}</style><defs><pattern id="a" width="6" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><path fill="#fff" d="M0 0h4v10H0z"/><path fill="#bbb" d="M4 0h2v10H4z"/></pattern></defs><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" transform="translate(0 -40)" viewBox="0 0 900 1320"><image width="582.2" height="595.1" x="15" href="img/bp_amba_RENDER_v02.svg"/></svg><g fill="#f7f3ea" font-size="26"><text x="720" y="534">Merlo</text><text x="720" y="568">Buenos Aires</text><text x="720" y="602">580.806 hab/bp</text><path fill="none" stroke="#fff" stroke-width="2" d="M690 512.7v92.1M227.3 333.7l225 225H690"/><circle cx="227" cy="333" r="4" fill="#fff"/><text x="720" y="373">Comuna 7</text><text x="720" y="407">CABA</text><text x="720" y="441">216.832 hab/bp</text><path fill="none" stroke="#fff" stroke-width="2" d="M690 351.7v92.2m-291.8-159 115.2 115.2H690"/><circle cx="398.3" cy="284.8" r="4" fill="#fff"/><text x="720" y="212">Comuna 1</text><text x="720" y="246">CABA</text><text x="720" y="280">223.282 hab/bp</text><path fill="none" stroke="#fff" stroke-width="2" d="M690 190.8v92.1m-243.1-15.5 30.6-30.5H690"/><circle cx="446.85" cy="267.3" r="4" fill="#fff"/><text x="720" y="51">Comuna 14</text><text x="720" y="85">CABA</text><text x="720" y="119">249.016 hab/bp</text><path fill="none" stroke="#fff" stroke-width="2" d="M690 30v92M419.3 242 585.4 75.9h105.3"/><circle cx="419.35" cy="242" r="4" fill="#fff"/></g><g id="bpa-dataviz-container"><g fill="#f7f3ea" font-size="34"><text x="50" y="670" class="bpa-dataviz-title" transform="translate(0 50)">Departamentos, según la cantidad de</text><text x="50" y="710" class="bpa-dataviz-title" transform="translate(0 50)">habitantes por biblioteca popular</text></g><g fill="#f7f3ea" class="bpa-dataviz-numbers" font-size="20" text-anchor="end"><text x="230" y="802" transform="translate(25 100)">400 - 2.000</text><text x="230" y="842" transform="translate(25 100)">2.001 - 9.300</text><text x="230" y="882" transform="translate(25 100)">9.301 - 18.000</text><text x="230" y="923" transform="translate(25 100)">18.001 - 28.900</text><text x="230" y="963" transform="translate(25 100)">28.901 - 42.100</text><text x="230" y="1003" transform="translate(25 100)">42.101 - 63.000</text><text x="230" y="1043" transform="translate(25 100)">63.001 - 90.000</text><text x="230" y="1083" transform="translate(25 100)">90.001 - 132.000</text><text x="230" y="1123" transform="translate(25 100)">132.001 - 180.000</text><text x="230" y="1163" transform="translate(25 100)">180.001 - 224.000</text><text x="230" y="1203" transform="translate(25 100)">224.001 - 581.000</text></g><path fill="#2ebcd1" d="M275 880h20.2v30H275z"/><path fill="#a6d8de" d="M275 920h279v30H275z"/><path fill="#f7f3ea" d="M275 960h408.2v30H275z"/><path fill="#fb947e" d="M275 1000h307.2v30H275z"/><path fill="#e3051b" d="M275 1040h182.1v30H275z"/><path fill="#a10413" d="M275 1120h109.2v30H275z"/><path fill="#c10517" d="M275 1080h149.5v30H275z"/><path fill="#75010c" d="M275 1160h60.6v30H275z"/><path fill="#4b0000" d="M275 1200h40.6v30H275z"/><path fill="#3c0000" d="M275 1240h12.1v30H275z"/><path fill="#280000" d="M275 1280h8.15v30H275z"/><path fill="url(#a)" d="M250 1220h557.5v30H250z" transform="translate(25 100)"/><g fill="#f7f3ea" class="bpa-dataviz-numbers" font-size="20"><text x="281.1" y="802" transform="translate(30 100)">5</text><text x="539.9" y="842" transform="translate(30 100)">69</text><text x="668.7" y="882" transform="translate(30 100)">101</text><text x="568" y="923" transform="translate(30 100)">76</text><text x="442.7" y="963" transform="translate(30 100)">45</text><text x="410.6" y="1003" transform="translate(30 100)">37</text><text x="370.2" y="1043" transform="translate(30 100)">27</text><text x="321.4" y="1083" transform="translate(30 100)">15</text><text x="300.9" y="1123" transform="translate(30 100)">10</text><text x="273.2" y="1163" transform="translate(30 100)">3</text><text x="269" y="1203" transform="translate(30 100)">2</text><text x="818.1" y="1243" transform="translate(30 100)">138</text></g><g fill="#f7f3ea" font-size="20" text-anchor="end"><text x="255" y="770" transform="translate(0 50)">Habitantes por</text><text x="255" y="798" transform="translate(0 50)">biblioteca popular</text><text x="275" y="798" text-anchor="start" transform="translate(0 50)">Departamentos</text><text x="833" y="1340" transform="translate(0 50)">Departamentos sin bibliotecas populares</text></g></g></svg>
+		</div>
+	</section>
+
+	<p>Aun con números aciagos, las jurisdicciones con las peores relaciones entre residentes y  bibliotecas populares continúan ofreciendo una alternativa para quienes buscan abstraerse entre las hojas de un libro.</p>
+
+	<p>Se trata, sin embargo, de una oportunidad de la que carecen 2,74 millones de argentinas y argentinos, que habitan los 138 departamentos donde actualmente no funciona ninguna biblioteca popular. Esas geografías representan, en este escenario, un terreno fértil para su fundación.</p> 
+
+	<p>¿Para qué más bibliotecas populares? En un siglo dominado por el apego adictivo al contenido efímero que plaga la virtualidad de las redes sociales, ellas pueden ofrecer el reparo necesario para el ejercicio de reflexiones más profundas y el cultivo de relaciones interpersonales sin la mediación obligada de los dispositivos móviles.</p>
+
+	<article>
+		<h3>Leer como estrategia de supervivencia</h3>
+
+		<p>Leer prolonga la vida. Al menos eso revela una publicación científica de la <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5105607/" target="_blank">Universidad de Yale</a>, que relaciona la lectura con una mayor expectativa de vida, en esencia, por los beneficios cognitivos que esa actividad intelectual acarrea en el devenir diario de las personas.</p>
+
+		<p>Pero ante la eventualidad de que esa máxima flaquee, en Argentina existen 1.894 cementerios, cuya distribución comparte una lógica de distribución espacial similar a la de las bibliotecas populares. </p>
+
+		<p>La lectura, entonces, parece ser una manera bastante ingeniosa de gambetear la parca o, al menos, dilatar la llegada del descanso eterno. La dicotomía, tal las cosas, parece reducirse a leer o morir. Paradójicamente, en Argentina hay más lugares para lo segundo que para lo primero. </p>
+		<section>
+			<div id="bpa-bibliotecas-arg"><div></div><span>Bibliotecas</span></div>
+			<div id="bpa-cementerios-arg"><div></div><span>Cementerios</span></div>
+		</section>
+	</article>	
+
+	<hr>
+	
+	<h3>Algunos datos sobre las bibliotecas populares</h3>
+	<ul>
+		<li>Son creadas por iniciativa de la comunidad local.  </li>
+		<li>El acceso a sus espacios y materiales es libre y gratuito. </li>
+		<li>Formalmente deben constituirse como asociaciones civiles.</li>
+		<li>Deben permanecer abiertas 20 horas semanales. </li>
+	</ul>
+
+	<hr>
+
+	<h3>Fuentes</h3>
+	<ul>
+		<li>Bibliotecas populares en Argentina | <a href="https://www.conabip.gob.ar/buscador_bp" target="_blank">CONABIP - Buscador de bibliotecas populares</a></li>
+		<li>Información geoespacial sobre Argentina | <a href="https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG" target="_blank">Instituto Geográfico Nacional</a></li>
+		<li>Población de Argentina por departamento | <a href="https://geoportal.obraspublicas.gob.ar/layers/geonode_data:geonode:Pob_T_Dpto_" target="_blank">Geoportal Ministerio de Obras Públicas de Argentina</a></li>
+	</ul>
+
+	<footer>
+		<hr>
+		<div><img src="img/leaf.svg" alt=""></div>
+		<div><img src="img/octubre_2025.svg" alt=""></div>
+	</footer>
+	</main>
+</body>
+</html>
