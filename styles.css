@@ -206,7 +206,7 @@ position: absolute;
 
 
 #bpa-habitantes-por-biblioteca { width: min(100%, 720px); }
-#bp-hpbp-amba-detail { width: 100%; max-width: 500px; }
+#bp-hpbp-amba-detail { width: 100%; max-width: 500px; margin-bottom: 5rem; }
 
 #bpa-habitantes-por-biblioteca svg text,
 #bp-hpbp-amba-detail svg text {
