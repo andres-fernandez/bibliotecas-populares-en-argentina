@@ -39,10 +39,10 @@ export function renderBibliotecasPorProvinciaBooksII(){
     'Santa Cruz': 8,
     'Tierra del Fuego': 8
   }
-  // Recordar que .data() no opera sobre objetos, sólo acepta un array como parámetro
-  // Por eso es necesario convertir el objeto original a un array con Object.entries()
-  // El resultado será un array de arrays con esta estructura: [ ["Neuquén", 69], ... ['Tierra del Fuego': 11] ] 
 
+  // .data() no opera sobre objetos, sólo acepta un array como parámetro
+  // Por eso es necesario convertir el objeto original a un array con Object.entries()
+  
   function splitAsArray(numb, divisor){
     let arr = [];
     if (numb < divisor) { 
