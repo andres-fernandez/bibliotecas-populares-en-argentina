@@ -86,7 +86,7 @@ export function renderHabitantesPorBiblioteca(biblio_data, habs_y_biblio_data, a
 
     renderIslasMalvinas(islas_malvinas, islas_malvinas_data);
     renderArgentina(argentina, argentina_data);
-    renderProvincias(provincias, provincias_data);
+    renderProvincias(provincias, provincias_data, '#222', 0.5);
     // renderBibliotecas(libraries_as_dot, biblio_data);
   
     ///////////////////////////////////////////////////////////////////

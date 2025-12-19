@@ -15,9 +15,7 @@ export const geoPathGenerator = d3.geoPath().projection(projection);
 // Render Argentina /////////////////////////////////////////////////////////////
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-export function renderArgentina(container, JSON_data) {
-	const strokeColor = '#bbb';
-	const strokeWidth = 1.05;
+export function renderArgentina(container, JSON_data, strokeColor = '#bbb', strokeWidth = 1.05) {
 	container.selectAll('path')
 		.data(JSON_data.features)
 		.join('path')
@@ -48,9 +46,7 @@ export function renderIslasMalvinas(container, JSON_data) {
 // Render Provincias /////////////////////////////////////////////////////////////
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  
-export function renderProvincias(container, JSON_data) {
-	const strokeColor = '#ddd';
-	const strokeWidth = 0.35;
+export function renderProvincias(container, JSON_data, strokeColor = '#ddd', strokeWidth = 0.35) {
 	container.attr('fill', 'none')
 		.selectAll('path')
 		.data(JSON_data.features)
@@ -64,9 +60,7 @@ export function renderProvincias(container, JSON_data) {
 // Render Departamentos /////////////////////////////////////////////////////////
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  
-export function renderDepartamentos(container, JSON_data) {
-	const strokeColor = '#bbb';
-	const strokeWidth = 0.1;
+export function renderDepartamentos(container, JSON_data, strokeColor = '#bbb', strokeWidth = 0.1) {
 	container.attr('fill', 'none')
 		.selectAll('path')
 		.data(JSON_data.features)

@@ -39,6 +39,9 @@ export function renderBibliotecasPorProvinciaBooksII(){
     'Santa Cruz': 8,
     'Tierra del Fuego': 8
   }
+
+  // .data() no opera sobre objetos, sólo acepta un array como parámetro
+  // Por eso es necesario convertir el objeto original a un array con Object.entries()
   
   function splitAsArray(numb, divisor){
     let arr = [];
@@ -72,14 +75,23 @@ db_TEMP.forEach(curr_arr => {
   // Una sección por cada provincia [por cada elemento de db_as_array] ////////////
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+  // Crear un section para cada elemento del array 'db_as_array' y asignarle como ID una versión sanitizada del primer elemento de cada array interno
   const sections = d3.select('#bpa-bibliotecas-por-provincia').selectAll('section')
     .data(db_as_array)
     .join('section')
     .attr('id', d => d[0].toLowerCase().split(' ').join('-').normalize('NFKD').replace(/[\u0300-\u036f]/g, ''));
 
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Crear un SVG dentro de cada section. No hace falta bindear nuevamente los ////
+  // datos, por se heredan de la asignación original al crear los divs ////////////
+  // document.querySelector('section#buenos-aires').__data__  >>  ['Buenos Aires, [99, 100, 100, 100]']   
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
   sections.each(function([provincia, bibliotecas]) {
     const section = d3.select(this);
+    // console.log(provincia, biblioteca)
 
+    // En cada section, crear el número de divs igual al length del array que se pasa como parámetro con el nombre de 'bibliotecas'
     const divs = section.selectAll('div')
       .data(bibliotecas)
       .join('div')
@@ -111,8 +123,9 @@ db_TEMP.forEach(curr_arr => {
 
       svg_group.append('rect')
         .attr('mask', 'url(#book-mask)')
-        .attr('y', d => 47 - yScale(bibliotecas))  
+        .attr('y', d => 47 - yScale(bibliotecas))    // 47 es la base de las hojas del libro, desde donde el rectángulo debe crecer
         .attr('width', width)
+        .attr('height', 38)                   // Esta es la altura de la zona de las hojas afectada por la máscara. Es el alto máximo que debería tener el rectángulo que representa datos
         .attr('height', d => yScale(bibliotecas))
         .attr('fill', '#5ad4d8');
 
@@ -128,6 +141,5 @@ db_TEMP.forEach(curr_arr => {
   });
 
 /* //////////////////////////////////////////////////////////////////// */
-
 
 }
